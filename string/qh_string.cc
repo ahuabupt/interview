@@ -13,6 +13,17 @@ namespace qh
 
     string::string( const char* s )
     {
+        if (!s)
+        {
+            data_ = NULL;
+            len_ = 0;
+        }else
+        {
+            len_ = strlen(data_);
+            data_ = new char[len_ + 1];
+            strcpy(data_,str);
+        }
+
     }
 
     string::string( const char* s, size_t len )
