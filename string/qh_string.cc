@@ -59,6 +59,7 @@ namespace qh
             data_ = NULL;
         }else
         {
+            len_ = rhs.len_;
             data_ = new char[strlen(rhs.len_) + 1];
             strcpy(data_,rhs.data_);
         }
@@ -71,6 +72,7 @@ namespace qh
         delete[] data_;
         data_  = new char[rhs.len_ + 1];
         strcpy(data_,rhs.data_);
+        return *this;
     }
 
     string::~string()
