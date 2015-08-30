@@ -70,6 +70,12 @@ namespace qh
         if (this == &rhs)
             return *this;
         delete[] data_;
+        len_ = rhs.len_;
+        if(len_ == 0)
+        {
+            data_ = NULL;
+            return *this;
+        }
         data_  = new char[rhs.len_ + 1];
         strcpy(data_,rhs.data_);
         return *this;
@@ -77,7 +83,8 @@ namespace qh
 
     string::~string()
     {
-        delete[] data_;
+        if(!data_)
+            delete[] data_;
 
     }
 
