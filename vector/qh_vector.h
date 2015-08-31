@@ -54,6 +54,11 @@ namespace qh
             return size_;
         }
 
+        size_t capacity_() const
+        {
+            return capacity_;
+        }
+
         // set & get
         T& operator[](size_t index);
 
