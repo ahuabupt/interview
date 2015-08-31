@@ -2,6 +2,8 @@
 #include "proxy_url_extractor.h"
 #include <fstream>
 #include <vector>
+#include <string>
+#include <iostream>
 #include "tokener.h"
 
 namespace qh
@@ -98,9 +100,8 @@ namespace qh
 
     void ProxyURLExtractor::Extract( const KeyItems& keys, const std::string& raw_url, std::string& sub_url )
     {
-#if 1
+
         //TODO 请面试者在这里添加自己的代码实现以完成所需功能
-#else
         //这是一份参考实现，但在特殊情况下工作不能符合预期
         Tokener token(raw_url);
         token.skipTo('?');
@@ -108,6 +109,17 @@ namespace qh
         std::string key;
         while (!token.isEnd()) {
             key = token.nextString('=');
+	    std::cout<<"yyy: "<<key<<std::endl;
+	    int i = key.size()-1;
+	    int keystart = 0;
+	    while(i>=0){
+              if(key[i] == '&') {
+		 keystart = i+1;
+		 break;
+	      }
+	      i--;
+	    }
+            key = key.substr(keystart,key.size());
             if (keys.find(key) != keys.end()) {
                 const char* curpos = token.getCurReadPos();
                 int nreadable = token.getReadableSize();
@@ -118,7 +130,7 @@ namespace qh
                 *  sub_url="http://hnujug.com/"
                 */
                 sub_url = token.nextString('&');
-
+		std::cout<<sub_url<<std::endl;
                 if (sub_url.empty() && nreadable > 0) {
                     /**
                     * case 2: 
@@ -127,12 +139,13 @@ namespace qh
                     */
                     assert(curpos);
                     sub_url.assign(curpos, nreadable);
+		    if(sub_url[0] == '&')
+			sub_url.clear();
                 }
             }
             token.skipTo('&');
             token.next();//skip one char : '&'
         }
-#endif
     }
 
     std::string ProxyURLExtractor::Extract( const KeyItems& keys, const std::string& raw_url )

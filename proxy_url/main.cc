@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-
+#include <string>
+#include <iostream>
 #include "proxy_url/proxy_url_extractor.h"
 
 #define H_ARRAYSIZE(a) \
@@ -40,8 +41,10 @@ void test_ProxUrlExtractor_Extract1()
     bool all_test_ok = true;
     for (size_t i = 0; i < H_ARRAY_SIZE(test_data); i++)
     {
+	std::string o  = ProxyURLExtractor::Extract(keys, test_data[i][0]);
         if (ProxyURLExtractor::Extract(keys, test_data[i][0]) != test_data[i][1]) {
-            //fprintf(stderr, "test failed [%s]\n", test_data[i][0].data());
+	    std::cout<<o<<std::endl;
+            fprintf(stderr, "test failed [%s]\n", test_data[i][0].data());
             all_test_ok = false;
             assert(false);
         }
@@ -128,14 +131,17 @@ void test_ProxUrlExtractor_Extract2()
     bool all_test_ok = true;
     for (size_t i = 0; i < H_ARRAY_SIZE(test_data); i++)
     {
+	std::string o  = ProxyURLExtractor::Extract(keys, test_data[i][0]);
         if (ProxyURLExtractor::Extract(keys, test_data[i][0]) != test_data[i][1]) {
+	    std::cout<<"iiiii"<<std::endl;
+	    std::cout<<o<<std::endl;
             fprintf(stderr, "test failed [%s]\n", test_data[i][0].data());
             all_test_ok = false;
             assert(false);
         }
         else 
         {
-            //fprintf(stderr, "test OK [%s]\n", test_data[i][0].data());
+            fprintf(stderr, "test OK [%s]\n", test_data[i][0].data());
         }
     }
 
