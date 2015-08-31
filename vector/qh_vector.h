@@ -54,7 +54,7 @@ namespace qh
             return size_;
         }
 
-        size_t capacity_() const
+        size_t capacity() const
         {
             return capacity_;
         }
@@ -73,7 +73,7 @@ namespace qh
     private:
         T*      data_;
         size_t  size_;
-        size_t capacity_;  // number of elements that can be stored
+        size_t  capacity_;  // number of elements that can be stored
     };
 }
 
