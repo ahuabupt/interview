@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "qh_vector.h"
 #include <assert.h>
+#include <stdio.h>
 
 void test1()       //push_back pop_back size   resize reverse
 {
@@ -9,13 +10,15 @@ void test1()       //push_back pop_back size   resize reverse
 	printf("%d\n", v.capacity());
 	int size1 = v.size();
 	assert(size1 == 1);
-	v.pop_back();
+	int num = 0;
+	v.pop_back(num);
+	assert(num == 2);
 	size1  = v.size();
 	assert(size1 == 0);
 	v.push_back(2);
 	v.push_back(3);
 	printf("%d\n", v.capacity());
-	int num = v[0];
+	num = v[0];
 	assert(num == 2);
 	v.resize(1);
 	assert(size1 == 1);

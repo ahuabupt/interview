@@ -18,6 +18,7 @@ namespace qh {
                 size_++;
         }
         void pop_back(const T& element) {
+                element = data_[size_-1];
                 size_ --;
         }
         void resize(size_t size, const T& value) {
