@@ -21,7 +21,6 @@ void test1()       //push_back pop_back size   resize reverse
 	v.push_back(10);
 	assert(v.capacity()==4);
 	qh::vector<int> v2(10,8);  //constructor
-//	cout<<v2.capacity()<<endl;
 	assert(v2.capacity()==10);
 	assert(v2.size()==10);
 	assert(v2[9] == 8);          //operator[]

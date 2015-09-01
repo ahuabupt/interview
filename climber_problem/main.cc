@@ -50,7 +50,7 @@ int resolve(const char* input)
     
     int prev = 0, res = 0;
     std::multiset<int, std::greater<int> > ms;
-    for (int i = 0; i < points.size(); ++i) {
+    for (unsigned int i = 0; i < points.size(); ++i) {
         if (points[i].start_) {
             ms.insert(points[i].height_);
         } else {

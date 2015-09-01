@@ -19,9 +19,9 @@ namespace qh
             len_ = 0;
         }else
         {
-            len_ = strlen(data_);
+            len_ = strlen(s);
             data_ = new char[len_ + 1];
-            strcpy(data_,str);
+            strcpy(data_,s);
         }
 
     }
@@ -36,14 +36,14 @@ namespace qh
         {
             if (len >= strlen(s)) 
             {
-                len_ = strlen(s)
+                len_ = strlen(s);
                 data_ = new char[len_ +1];
                 strcpy(data_,s);
             }else
             {
                 len_ = len;
                 data_ = new char[len_ + 1];
-                for (int i =0; i<len; i++) {
+                for (unsigned int i =0; i<len; i++) {
                     data_[i] = s[i];
                 }
                 data_[len_] = '\0';
@@ -60,7 +60,7 @@ namespace qh
         }else
         {
             len_ = rhs.len_;
-            data_ = new char[strlen(rhs.len_) + 1];
+            data_ = new char[len_ + 1];
             strcpy(data_,rhs.data_);
         }
     }
@@ -109,14 +109,14 @@ namespace qh
         return data_;
     }
 
-    char* string::operator[]( size_t index )
+    char string::operator[]( size_t index )
     {
         if(index >= len_)
         {
-            return NULL;
+            return '\0';
         }else
         {
-            return &data_[index];
+            return data_[index];
         }
     }
 }
